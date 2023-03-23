@@ -1,22 +1,45 @@
+import { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
 
 function App() {
+  const [english, setEnglish] = useState('');
+  const [data, setdata] = useState('');
+
+  const handleClick = () => {
+    const ret = fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${english}&appid=0a4c0b9535f430ad8fcff07742a1e5f2`
+    )
+      .then((data) => {
+        return data.json();
+      })
+      .then((data) => {
+        setdata(data.main.temp);
+        // console.log(first);
+        return data.main;
+      });
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <div className='App'>
+      <header className='App-header'>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          <TextField
+            id='outlined-basic'
+            label='English Word'
+            variant='outlined'
+            onChange={(e) => {
+              setEnglish(e.target.value);
+            }}
+            value={english}
+          />
+          <Button variant='contained' className='butoon' onClick={handleClick}>
+            Submit
+          </Button>
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        {data && <Card variant='outlined'>Temperature:- {data} F</Card>}
       </header>
     </div>
   );

@@ -13,8 +13,13 @@
   }
 }
 
+.butoon{
+  line-height: 3 !important;
+  margin-left: 10px !important;
+}
+
 .App-header {
-  background-color: #282c34;
+  background-color: palevioletred;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
