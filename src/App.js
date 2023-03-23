@@ -11,7 +11,7 @@ function App() {
 
   const handleClick = () => {
     const ret = fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${english}&appid=0a4c0b9535f430ad8fcff07742a1e5f2`
+      `https://api.openweathermap.org/data/2.5/weather?q=${english}&appid={API_KEY}`
     )
       .then((data) => {
         return data.json();
